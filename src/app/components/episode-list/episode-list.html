@@ -1,0 +1,5 @@
+@for (episode of episodes$ | async; track episode.number) {
+<li>{{ episode.number }} - {{ episode.mainArtist.name }}</li>
+} @empty {
+<li>There are no items.</li>
+}
