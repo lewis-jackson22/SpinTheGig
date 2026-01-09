@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 
 import { EpisodeService } from '../../services/episode';
@@ -7,7 +8,8 @@ import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-episode-details',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './episode-details.html'
 })
 export class EpisodeDetails {

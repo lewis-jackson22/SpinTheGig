@@ -1,1 +1,123 @@
-<p>episode-details works!</p>
+<div class="p-5">
+    @if (episode$ | async; as episode) {
+        <h1 class="text-5xl mb-5 font-semibold">Episode {{ episode.number }}</h1>
+        
+        <h2 class="text-3xl mb-3 font-medium">Gig Details</h2>
+        
+        <table class="text-2xl">
+            <tr>
+                <th class="table-th">Main Artist</th>
+                <td class="table-td">{{ episode.mainArtist.name }}</td>
+            </tr>
+            <tr>
+                <th class="table-th">Supporting Artist</th>
+                <td class="table-td">{{ episode.supportingArtist?.name }}</td>
+            </tr>
+            <tr>
+                <th class="table-th">Video URL</th>
+                <td class="table-td"><a [href]="episode.url" target="_blank">Click here</a></td>
+            </tr>
+            <tr>
+                <th class="table-th">Ticket Price</th>
+                <td class="table-td">£{{ episode.ticketPrice }}</td>
+            </tr>
+            <tr>
+                <th class="table-th">Bog Rating</th>
+                <td class="table-td">{{ episode.bogRating ?? "No rating" }}</td>
+            </tr>
+            <tr>
+                <th class="table-th">Overall Rating</th>
+                <td class="table-td">{{ episode.overallRating }}</td>
+            </tr>
+        </table>
+
+        <h2 class="text-3xl my-3 font-medium">Main Venue Details</h2>
+        
+        <table class="text-2xl">
+            <tr>
+                <th class="table-th">Name</th>
+                <td class="table-td">{{ episode.venue.name }}</td>
+            </tr>
+            <tr>
+                <th class="table-th">Address Line 1</th>
+                <td class="table-td">{{ episode.venue.nameOrNumber }} {{ episode.venue.addressLine1 }}</td>
+            </tr>
+            @if (episode.venue.addressLine2){
+                <tr>
+                    <th class="table-th">Address Line 2</th>
+                    <td class="table-td">{{ episode.venue.addressLine2 }}</td>
+                </tr>
+            }
+            <tr>
+                <th class="table-th">City</th>
+                <td class="table-td">{{ episode.venue.city }}</td>
+            </tr>
+            <tr>
+                <th class="table-th">County</th>
+                <td class="table-td">{{ episode.venue.county }}</td>
+            </tr>
+            <tr>
+                <th class="table-th">Postcode</th>
+                <td class="table-td">{{ episode.venue.postcode }}</td>
+            </tr>
+            <tr>
+                <th class="table-th">Beverage</th>
+                <td class="table-td">{{ episode.midGigBeverage?.name ?? "Unknown" }}</td>
+            </tr>
+            <tr>
+                <th class="table-th">Beverage Price</th>
+                <td class="table-td">£{{ episode.midGigBeveragePrice ?? "???" }}</td>
+            </tr>
+        </table>
+
+        <h2 class="text-3xl my-3 font-medium">Pre-gig Pub Details</h2>
+        
+        @if (episode.preGigPub) {
+            <table class="text-2xl">
+                <tr>
+                    <th class="table-th">Name</th>
+                    <td class="table-td">{{ episode.preGigPub.name }}</td>
+                </tr>
+                <tr>
+                    <th class="table-th">Address Line 1</th>
+                    <td class="table-td">{{ episode.preGigPub.nameOrNumber }} {{ episode.preGigPub.addressLine1 }}</td>
+                </tr>
+                @if (episode.preGigPub.addressLine2) {
+                    <tr>
+                        <th class="table-th">Address Line 2</th>
+                        <td class="table-td">{{ episode.preGigPub.addressLine2 }}</td>
+                    </tr>
+                }
+                <tr>
+                    <th class="table-th">City</th>
+                    <td class="table-td">{{ episode.preGigPub.city }}</td>
+                </tr>
+                <tr>
+                    <th class="table-th">County</th>
+                    <td class="table-td">{{ episode.preGigPub.county }}</td>
+                </tr>
+                <tr>
+                    <th class="table-th">Postcode</th>
+                    <td class="table-td">{{ episode.preGigPub.postcode }}</td>
+                </tr>
+                <tr>
+                    <th class="table-th">Beverage</th>
+                    <td class="table-td">{{ episode.preGigBeverage?.name ?? "Unknown" }}</td>
+                </tr>
+                <tr>
+                    <th class="table-th">Beverage Price</th>
+                    <td class="table-td">£{{ episode.preGigBeveragePrice ?? "???" }}</td>
+                </tr>
+            </table>
+        } @else {
+            <table class="text-2xl">
+                <tr>
+                    <th class="table-th">No pub visited before the gig</th>
+                </tr>
+            </table>
+        }
+
+    } @else {
+        <h1>Loading...</h1>
+    }
+</div>

@@ -16,6 +16,6 @@ export class EpisodeService {
   }
 
   getEpisodeById(id: number): Observable<Episode | undefined> {
-    return this.http.get<Episode>(`${this.baseUrl}/${id}`);
+    return this.http.get<Episode | undefined>(`${this.baseUrl}/${id}`);
   }
 }
