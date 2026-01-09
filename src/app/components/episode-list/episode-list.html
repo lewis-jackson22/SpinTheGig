@@ -1,5 +1,19 @@
 @for (episode of episodes$ | async; track episode.number) {
-<li>{{ episode.number }} - {{ episode.mainArtist.name }}</li>
+    <div class="bg-gray-200 flex mb-4 border-3">
+        <div class="border-r-3">
+            <div class="m-5 text-4xl">
+                EP. {{ episode.number }}
+            </div>         
+        </div>
+        <div class="m-5">
+            <a [routerLink]="['/episodes', episode.number]">
+                <span class="text-4xl uppercase hover:text-blue-300">{{ episode.mainArtist.name }}</span>
+            </a>
+            @if (episode.supportingArtist != null){
+                <span class="text-3xl ms-4">ft. {{ episode.supportingArtist.name }}</span>
+            }
+        </div>
+    </div>
 } @empty {
-<li>There are no items.</li>
+    <li>There are no items.</li>
 }
